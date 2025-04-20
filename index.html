@@ -25,6 +25,15 @@
             font-family: 'Bebas Neue', sans-serif;
             letter-spacing: 1px;
         }
+        /* Scroll personalizado */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #b45309;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -33,19 +42,19 @@
         <div class="bg-black px-4 py-3 text-amber-100 sticky top-0 z-10">
             <div class="flex justify-between items-center">
                 <h2 class="text-xl font-bold tracking-wide bebas-neue">MI PLAN MEDIA MARATÓN</h2>
-                <button id="todayButton" class="bg-amber-100 text-black text-xs px-3 py-1 rounded-full bebas-neue">
+                <button id="todayButton" class="bg-amber-100 text-black text-xs px-3 py-1 rounded-full bebas-neue hover:bg-amber-200 transition">
                     HOY
                 </button>
             </div>
         </div>
         
         <!-- Selector de Atleta -->
-        <div class="bg-stone-700 px-4 py-2 flex justify-center">
+        <div class="bg-stone-700 px-4 py-2 flex justify-center sticky top-12 z-10">
             <div class="inline-flex rounded-md shadow-sm">
-                <button id="athleteHombre" class="px-4 py-1 text-sm font-medium bg-green-900 text-amber-100 rounded-l-lg bebas-neue focus:z-10">
+                <button id="athleteHombre" class="px-4 py-1 text-sm font-medium bg-green-900 text-amber-100 rounded-l-lg bebas-neue focus:z-10 hover:bg-green-800 transition">
                     HOMBRE
                 </button>
-                <button id="athleteMujer" class="px-4 py-1 text-sm font-medium bg-stone-600 text-amber-100 rounded-r-lg bebas-neue focus:z-10">
+                <button id="athleteMujer" class="px-4 py-1 text-sm font-medium bg-stone-600 text-amber-100 rounded-r-lg bebas-neue focus:z-10 hover:bg-stone-500 transition">
                     MUJER
                 </button>
             </div>
@@ -53,9 +62,9 @@
         
         <!-- Date Navigation -->
         <div class="flex justify-between items-center px-4 py-2 bg-stone-800 text-amber-100 sticky top-24 z-10">
-            <button id="prevButton" class="p-1 hover:text-amber-400 bebas-neue text-lg">← ANTERIOR</button>
+            <button id="prevButton" class="p-1 hover:text-amber-400 bebas-neue text-lg transition">← ANTERIOR</button>
             <h3 id="currentDate" class="text-lg text-center text-amber-200 bebas-neue">20 de abril de 2025</h3>
-            <button id="nextButton" class="p-1 hover:text-amber-400 bebas-neue text-lg">SIGUIENTE →</button>
+            <button id="nextButton" class="p-1 hover:text-amber-400 bebas-neue text-lg transition">SIGUIENTE →</button>
         </div>
         
         <!-- Today's Run -->
@@ -108,18 +117,27 @@
         <!-- Progress Bar -->
         <div class="px-4 pb-4 bg-amber-50">
             <div class="w-full bg-stone-200 rounded-full h-3 overflow-hidden border border-stone-300">
-                <div id="progressBar" class="bg-green-900 h-3" style="width: 30%;"></div>
+                <div id="progressBar" class="bg-green-900 h-3 transition-all duration-300" style="width: 8%;"></div>
             </div>
             <p id="weekProgress" class="text-xs text-center mt-1 text-stone-800 bebas-neue tracking-wider">SEMANA 1 DE 12</p>
         </div>
     </div>
 
 <script>
-  // Datos completos del plan de entrenamiento
+  // ========== DATOS COMPLETOS DEL PLAN ==========
   const trainingPlan = {
     "athletes": {
       "hombre": [
-        // Semana 1 (21-27/abr)
+        // Semana 1 (20-26/abr)
+        {
+          "date": "20/04/2025",
+          "day": "Domingo",
+          "workout": "Descanso activo (caminata 30')",
+          "mindset": "Preparación mental para comenzar",
+          "spiritual": "Visualización de la meta final",
+          "nutrition": "Hidratación con electrolitos",
+          "notes": "Preparar equipo para mañana"
+        },
         {
           "date": "21/04/2025",
           "day": "Lunes",
@@ -138,10 +156,65 @@
           "nutrition": "Batido post-entreno con proteína y plátano.",
           "notes": "Zona 2, cadencia 170-180 spm."
         },
-        // ... (resto de días para hombre)
+        {
+          "date": "23/04/2025",
+          "day": "Miércoles",
+          "workout": "Fuerza: 3x15 (sentadillas, plancha, lunges)",
+          "mindset": "Fuerza mental primero.",
+          "spiritual": "Respiración 4-7-8 durante ejercicios.",
+          "nutrition": "Aumentar ingesta de proteínas.",
+          "notes": "Enfocar en técnica."
+        },
+        {
+          "date": "24/04/2025",
+          "day": "Jueves",
+          "workout": "Fartlek 8x1' rápido/2' lento",
+          "mindset": "Juego con mi velocidad.",
+          "spiritual": "Dedica intervalos a valores (ej: paciencia).",
+          "nutrition": "Carbohidratos complejos pre-entreno.",
+          "notes": "Usar reloj para intervalos."
+        },
+        {
+          "date": "25/04/2025",
+          "day": "Viernes",
+          "workout": "Descanso activo (caminata 30')",
+          "mindset": "Celebro mi consistencia.",
+          "spiritual": "Observa 3 detalles en naturaleza.",
+          "nutrition": "Smoothie antioxidante post-caminata.",
+          "notes": "Descalzo en pasto opcional."
+        },
+        {
+          "date": "26/04/2025",
+          "day": "Sábado",
+          "workout": "8km @6:45/km",
+          "mindset": "Cada km construye mi puente.",
+          "spiritual": "'Vuelta de gratitud' (cada 2km).",
+          "nutrition": "Desayuno completo pre-run.",
+          "notes": "Ritmo conversacional."
+        },
+        // Semana 2 (27/abr - 3/may)
+        {
+          "date": "27/04/2025",
+          "day": "Domingo",
+          "workout": "Yoga/Estiramientos",
+          "mindset": "Flexibilidad = longevidad.",
+          "spiritual": "Mantra: 'Fluidez'.",
+          "nutrition": "Día de descarga metabólica.",
+          "notes": "Usar banda elástica para movilidad."
+        }
+        // ... (continuar con el resto de semanas)
       ],
       "mujer": [
-        // Semana 1 (21-27/abr)
+        // Semana 1 (20-26/abr)
+        {
+          "date": "20/04/2025",
+          "day": "Domingo",
+          "workout": "Caminata 30' + estiramientos",
+          "mindset": "Mentalidad de principiante",
+          "spiritual": "Respiración consciente",
+          "nutrition": "Agua con limón",
+          "notes": "Estiramientos suaves"
+        },
         {
           "date": "21/04/2025",
           "day": "Lunes",
@@ -159,18 +232,18 @@
           "spiritual": "Dedica esta run a 'auto-confianza'.",
           "nutrition": "Hidratación constante durante el día.",
           "notes": "Usar cronómetro para intervalos."
-        },
-        // ... (resto de días para mujer)
+        }
+        // ... (continuar con el resto de semanas)
       ]
     }
   };
 
-  // Variables globales
+  // ========== CONFIGURACIÓN INICIAL ==========
   let currentAthlete = "hombre";
-  let today = new Date().toISOString().split('T')[0];
+  let today = getCurrentDate();
   let selectedDate = today;
   
-  // Elementos del DOM
+  // ========== ELEMENTOS DEL DOM ==========
   const currentDateEl = document.getElementById('currentDate');
   const todaysRunEl = document.getElementById('todaysRun');
   const todaysMindsetEl = document.getElementById('todaysMindset');
@@ -182,14 +255,14 @@
   const athleteHombreBtn = document.getElementById('athleteHombre');
   const athleteMujerBtn = document.getElementById('athleteMujer');
 
-  // Event Listeners
+  // ========== EVENT LISTENERS ==========
   document.getElementById('prevButton').addEventListener('click', navigatePrev);
   document.getElementById('nextButton').addEventListener('click', navigateNext);
   document.getElementById('todayButton').addEventListener('click', resetToToday);
   athleteHombreBtn.addEventListener('click', () => switchAthlete('hombre'));
   athleteMujerBtn.addEventListener('click', () => switchAthlete('mujer'));
 
-  // Funciones principales
+  // ========== FUNCIONES PRINCIPALES ==========
   function navigateNext() {
       const date = new Date(selectedDate);
       date.setDate(date.getDate() + 1);
@@ -227,15 +300,22 @@
 
   function formatDisplayDate(dateString) {
       const date = new Date(dateString);
+      const adjustedDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      return date.toLocaleDateString('es-ES', options);
+      return adjustedDate.toLocaleDateString('es-ES', options);
   }
 
-  function getWeekNumber(dateString) {
-      const date = new Date(dateString);
-      const firstDay = new Date(date.getFullYear(), 0, 1);
-      const days = Math.floor((date - firstDay) / (24 * 60 * 60 * 1000));
-      return Math.ceil((days + firstDay.getDay() + 1) / 7);
+  function getCurrentDate() {
+      const now = new Date();
+      return new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+  }
+
+  function getWeekNumber(selectedDate) {
+      const startDate = new Date('2025-04-20');
+      const currentDate = new Date(selectedDate);
+      const diffTime = currentDate - startDate;
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      return Math.min(12, Math.max(1, Math.floor(diffDays / 7) + 1));
   }
 
   function updateDisplay() {
@@ -272,7 +352,7 @@
       }
   }
 
-  // Inicialización
+  // ========== INICIALIZACIÓN ==========
   switchAthlete('hombre');
   updateDisplay();
 </script>
