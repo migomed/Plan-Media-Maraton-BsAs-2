@@ -102,24 +102,34 @@
         </div>
     </div>
 
-    <script>
-        // Datos del plan (simplificado para el ejemplo)
-        const trainingPlan = {
-            "2025-04-20": {
-                run: "5km ritmo fácil",
-                mindset: "Visualización de metas",
-                spiritual: "10 min meditación",
-                nutrition: "Incrementar hidratación",
-                notes: "Ritmo cardíaco por debajo de 150"
-            },
-            "2025-04-21": {
-                run: "Descanso activo - 30 min caminata",
-                mindset: "Establecer intención semanal",
-                spiritual: "Gratitud - 3 cosas",
-                nutrition: "Aumentar proteínas post-entrenamiento",
-                notes: "Estiramientos profundos"
-            }
-        };
+<script>
+  const trainingPlan = {
+    "plan": "Puente de Fuego - Readaptación (21/abr - 18/may)",
+    "athletes": {
+      "hombre": [
+        {
+          "date": "21/04/2025",
+          "day": "Lunes",
+          "workout": "Descanso/Yoga",
+          "mindset": "Mi cuerpo se prepara para la acción.",
+          "spiritual": "Meditación 5' con sonidos naturales.",
+          "notes": "Pliality App: 'Recovery Flow'."
+        }
+        // ... (más días aquí)
+      ],
+      "mujer": [
+        {
+          "date": "21/04/2025",
+          "day": "Lunes",
+          "workout": "Descanso/Yoga",
+          "mindset": "Honro mi punto de partida.",
+          "spiritual": "Intención: 'Alegría en el proceso'.",
+          "notes": "15-min 'Gentle Flow' en Pliality."
+        }
+        // ... (más días aquí)
+      ]
+    }
+  };
 
         // Funcionalidad de navegación (igual a tu código original)
         let today = new Date().toISOString().split('T')[0];
