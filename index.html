@@ -287,21 +287,42 @@
         }
         
         function updateDisplay() {
-            currentDateEl.textContent = formatDisplayDate(selectedDate).toUpperCase();
-            const todaysPlan = trainingPlan[selectedDate] || {
-                run: "No hay entrenamiento programado",
-                mindset: "-",
-                spiritual: "-",
-                nutrition: "-",
-                notes: "-"
-            };
-            
-            todaysRunEl.textContent = todaysPlan.run;
-            todaysMindsetEl.textContent = todaysPlan.mindset;
-            todaysSpiritualEl.textContent = todaysPlan.spiritual;
-            todaysNutritionEl.textContent = todaysPlan.nutrition;
-            todaysNotesEl.textContent = todaysPlan.notes;
-        }
+    currentDateEl.textContent = formatDisplayDate(selectedDate).toUpperCase();
+    
+    // Convertir fecha al formato DD/MM/YYYY
+    const dateParts = selectedDate.split('-');
+    const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+    
+    // Buscar en el plan de entrenamiento (hombre)
+    let todaysPlan = {
+        workout: "No hay entrenamiento programado",
+        mindset: "-",
+        spiritual: "-",
+        notes: "-"
+    };
+    
+    // Buscar en el plan del hombre
+    const planHombre = trainingPlan.athletes.hombre;
+    const foundDay = planHombre.find(day => day.date === formattedDate);
+    
+    if (foundDay) {
+        todaysPlan = {
+            workout: foundDay.workout,
+            mindset: foundDay.mindset,
+            spiritual: foundDay.spiritual,
+            notes: foundDay.notes
+        };
+    }
+    
+    todaysRunEl.textContent = todaysPlan.workout;
+    todaysMindsetEl.textContent = todaysPlan.mindset;
+    todaysSpiritualEl.textContent = todaysPlan.spiritual;
+    todaysNotesEl.textContent = todaysPlan.notes;
+    
+    // Nutrition no está en tus datos, lo dejamos vacío
+    todaysNutritionEl.textContent = "-";
+}
+        
         
         updateDisplay();
     </script>
