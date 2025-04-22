@@ -1,0 +1,35 @@
+{
+  "athletes": {
+    "migo": [
+      {
+        "date": "20/04/2025",
+        "day": "Domingo",
+        "workout": "Descanso activo",
+        "mindset": "Visualiza la meta",
+        "spiritual": "Meditación 5'",
+        "nutrition": "Agua con limón",
+        "notes": ""
+      },
+      {
+        "date": "24/04/2025",
+        "day": "Miercoles",
+        "workout": "Yoga 20'",
+        "mindset": "Respira profundo",
+        "spiritual": "Gratitud",
+        "nutrition": "Proteínas",
+        "notes": "Usar la app Pliability"
+      }
+    ],
+    "pau": [
+      {
+        "date": "20/04/2025",
+        "day": "Domingo",
+        "workout": "Caminata 30'",
+        "mindset": "Disfrutar el proceso",
+        "spiritual": "Respiración consciente",
+        "nutrition": "Jugo verde",
+        "notes": ""
+      }
+    ]
+  }
+}
